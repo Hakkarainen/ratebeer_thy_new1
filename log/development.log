@@ -837,3 +837,107 @@ Processing by MembershipsController#new as HTML
   [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
   [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
 Completed 200 OK in 49ms (Views: 45.3ms | ActiveRecord: 0.6ms)
+  [1m[36mBrewery Load (0.2ms)[0m  [1mSELECT  "breweries".* FROM "breweries"  ORDER BY "breweries"."id" ASC LIMIT 1[0m
+
+
+Started GET "/breweries" for ::1 at 2017-02-09 16:22:57 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BreweriesController#index as HTML
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "breweries"
+  [1m[36mBrewery Load (0.1ms)[0m  [1mSELECT "breweries".* FROM "breweries"[0m
+  Rendered breweries/index.html.erb within layouts/application (7.9ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 1270ms (Views: 1225.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/users/1" for ::1 at 2017-02-09 16:23:00 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "ratings" WHERE "ratings"."user_id" = ?  [["user_id", 1]]
+  [1m[36mBeerClub Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "beer_clubs" INNER JOIN "memberships" ON "beer_clubs"."id" = "memberships"."beer_club_id" WHERE "memberships"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mBeerClub Load (0.3ms)[0m  SELECT "beer_clubs".* FROM "beer_clubs" INNER JOIN "memberships" ON "beer_clubs"."id" = "memberships"."beer_club_id" WHERE "memberships"."user_id" = ?  [["user_id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."user_id" = ?  [["user_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "ratings" WHERE "ratings"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35mBeer Load (0.2ms)[0m  SELECT  "beers".* FROM "beers" WHERE "beers"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "beers".* FROM "beers" WHERE "beers"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (130.9ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 346ms (Views: 342.1ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/memberships/new" for ::1 at 2017-02-09 16:23:03 +0200
+Processing by MembershipsController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBeerClub Load (0.2ms)[0m  [1mSELECT "beer_clubs".* FROM "beer_clubs"[0m
+  [1m[35mBeerClub Load (0.1ms)[0m  SELECT "beer_clubs".* FROM "beer_clubs" INNER JOIN "memberships" ON "beer_clubs"."id" = "memberships"."beer_club_id" WHERE "memberships"."user_id" = ?  [["user_id", 1]]
+  Rendered memberships/_form.html.erb (42.2ms)
+  Rendered memberships/new.html.erb within layouts/application (47.9ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 112ms (Views: 105.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users" for ::1 at 2017-02-09 16:23:04 +0200
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/index.html.erb within layouts/application (2.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 83ms (Views: 82.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/ratings" for ::1 at 2017-02-09 16:23:06 +0200
+Processing by RatingsController#index as HTML
+  [1m[35mRating Load (0.4ms)[0m  SELECT "ratings".* FROM "ratings"
+  [1m[36mBeer Load (0.2ms)[0m  [1mSELECT  "beers".* FROM "beers" WHERE "beers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "beers".* FROM "beers" WHERE "beers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered ratings/index.html.erb within layouts/application (8.9ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 86ms (Views: 84.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users" for ::1 at 2017-02-09 16:23:09 +0200
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/index.html.erb within layouts/application (1.6ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 47ms (Views: 45.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/users/1" for ::1 at 2017-02-09 16:23:10 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "ratings" WHERE "ratings"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35mBeerClub Exists (0.1ms)[0m  SELECT  1 AS one FROM "beer_clubs" INNER JOIN "memberships" ON "beer_clubs"."id" = "memberships"."beer_club_id" WHERE "memberships"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mBeerClub Load (0.1ms)[0m  [1mSELECT "beer_clubs".* FROM "beer_clubs" INNER JOIN "memberships" ON "beer_clubs"."id" = "memberships"."beer_club_id" WHERE "memberships"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "ratings" WHERE "ratings"."user_id" = ?  [["user_id", 1]]
+  [1m[36mBeer Load (0.1ms)[0m  [1mSELECT  "beers".* FROM "beers" WHERE "beers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "beers".* FROM "beers" WHERE "beers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (7.3ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 72ms (Views: 70.5ms | ActiveRecord: 0.6ms)
