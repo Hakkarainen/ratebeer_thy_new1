@@ -1,4 +1,5 @@
 require 'rails_helper'
+include Helpers
 
 RSpec.describe User, type: :model do
   it "has the username set correctly" do
@@ -27,9 +28,10 @@ RSpec.describe User, type: :model do
     expect(user).not_to be_valid
     expect(User.count).to eq(0)
   end
+end
 
   describe "with a proper password" do
-    let(:user){ FactoryGirl.create(:user) }
+    let!(:user){ FactoryGirl.create(:user) }
 
     it "is saved" do
       expect(user).to be_valid
@@ -37,22 +39,13 @@ RSpec.describe User, type: :model do
     end
 
     it "and with two ratings, has the correct average rating" do
-      user.ratings << FactoryGirl.create(:rating)
-      user.ratings << FactoryGirl.create(:rating2)
+      beer = FactoryGirl.create(:beer)
+      user.ratings << FactoryGirl.create(:rating, beer:beer, user:user)
+      user.ratings << FactoryGirl.create(:rating2, beer:beer, user:user)
 
       expect(user.ratings.count).to eq(2)
       expect(user.average_rating).to eq(15.0)
     end
-  end
-
-  it "has method for determining the favorite_beer" do
-    user = FactoryGirl.create(:user)
-    expect(user).to respond_to(:favorite_beer)
-  end
-
-  it "without ratings does not have a favorite beer" do
-    user = FactoryGirl.create(:user)
-    expect(user.favorite_beer).to eq(nil)
   end
 
     describe "favorite beer" do
@@ -62,14 +55,14 @@ RSpec.describe User, type: :model do
         expect(user).to respond_to(:favorite_beer)
       end
 
-      it "without ratings does not have one" do
+      it "without ratings does not have a favorite beer" do
         expect(user.favorite_beer).to eq(nil)
       end
 
       it "is the only rated if only one rating" do
         beer = create_beer_with_rating(user, 10)
 
-        expect(user.favorite_beer).to eq(beer)
+        expect(user.favorite_beer.beer).to eq(beer.id)
       end
 
       it "is the one with highest rating if several rated" do
@@ -78,18 +71,15 @@ RSpec.describe User, type: :model do
 
         expect(user.favorite_beer).to eq(best)
       end
-    end
-
-  end # describe User
-
-  def create_beers_with_ratings(user, *scores)
-    scores.each do |score|
-      create_beer_with_rating user, score
-    end
   end
 
-  def create_beer_with_rating(user, score)
-    beer = FactoryGirl.create(:beer)
-    FactoryGirl.create(:rating, score:score,  beer:beer, user:user)
-    beer
+def create_beers_with_ratings(user, *scores)
+  scores.each do |score|
+    create_beer_with_rating user, score
   end
+end
+
+def create_beer_with_rating(user, score)
+  beer = FactoryGirl.create(:beer)
+  FactoryGirl.create(:rating, beer:beer, user:user)
+end

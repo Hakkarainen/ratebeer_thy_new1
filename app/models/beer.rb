@@ -13,7 +13,6 @@ class Beer < ActiveRecord::Base
   end
 
   def average
-    binding.pry
     ratings.map{ |r| r.score }.sum / ratings.count.to_f
   end
 end
